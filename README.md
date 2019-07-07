@@ -11,7 +11,7 @@ This module works as a wrapper for the Spotify Web API. It lets you search for s
 Authorization:
 - `Get-SpotifyAuthorizationToken`
 
-Library API
+Library API:
 - `Get-SpotifyLibraryTracks`
 - `Get-SpotifyLibraryAlbums`
 - `Get-SpotifyLibraryTracksContains`
