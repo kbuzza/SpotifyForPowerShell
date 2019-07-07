@@ -1,11 +1,24 @@
 function Get-SpotifyAuthorizationToken {
+    <#
+        .SYNOPSIS
+            This function generates a spotify authorization token using the users Application Client Id and Redirect URI.
+            It will load a form and use that to generate an auth token. The pageLoadTime variable can be adjusted after
+            testing how long this form takes to fully load on the users personal computer.
+
+            Note: The first time running this function may prompt the user to enter their Spotify username and password, but
+            this should be a one-time process for an individual device.
+    
+        .EXAMPLE
+            C:\Users\kbuzz> Get-SpotifyAuthorizationToken
+    #>
+    
     $clientId = '19ea14240fc04dae8f57243ed42ce785' # User - enter client id from spotify application
-    $redirectUrl = 'http://localhost:3000/callback' # User - enter redirect url from spotify application
-    $pageLoadTime = 8 # User - enter minimum time it takes to load form (may need to test this on your internet)
+    $redirectUri = 'http://localhost:3000/callback' # User - enter redirect url from spotify application
+    $pageLoadTime = 5 # User - enter minimum time it takes to load form (may need to test this on your internet)
 
     $AuthUri = "https://accounts.spotify.com/en/authorize?" +
                "client_id=$clientId" +
-               "&redirect_uri=$redirectUrl" +
+               "&redirect_uri=$redirectUri" +
                "&scope=playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative user-library-read" +
                "&response_type=token"
 
