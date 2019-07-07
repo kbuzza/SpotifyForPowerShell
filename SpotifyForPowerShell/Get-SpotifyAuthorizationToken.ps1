@@ -19,7 +19,7 @@ function Get-SpotifyAuthorizationToken {
     $AuthUri = "https://accounts.spotify.com/en/authorize?" +
                "client_id=$clientId" +
                "&redirect_uri=$redirectUri" +
-               "&scope=playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative user-library-read" +
+               "&scope=playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative user-library-read user-library-modify" +
                "&response_type=token"
 
     $FormProperties = @{
