@@ -18,6 +18,8 @@ Library API:
 - `Get-SpotifyLibraryAlbumsContains`
 - `Save-SpotifyLibraryTracks`
 - `Save-SpotifyLibraryAlbums`
+- `Remove-SpotifyLibraryTracks`
+- `Remove-SpotifyLibraryAlbums`
 
 **Change Log**
 - v0.1 Initial Commit
@@ -26,3 +28,4 @@ Library API:
 - v0.1c Added code folder
 - v0.1d Deleting code outside folder
 - v0.2 Added Library API Get functions
+- v0.3 Completed initial Library API
