@@ -21,6 +21,17 @@ Library API:
 - `Remove-SpotifyLibraryTracks`
 - `Remove-SpotifyLibraryAlbums`
 
+Playlists API:
+-`Get-SpotifyPlaylistsPlaylist`
+-`Get-SpotifyPlaylistsPlaylistPhoto`
+-`Get-SpotifyPlaylistsTracks`
+-`Get-SpotifyPlaylistsUserPlaylists`
+-`Remove-SpotifyPlaylistsTracks`
+-`Save-SpotifyPlaylistsPlaylist`
+-`Save-SpotifyPlaylistsTracks`
+-`Set-SpotifyPlaylistsDetails`
+-`Set-SpotifyPlaylistsReorder`
+
 **Change Log**
 - v0.1 Initial Commit
 - v0.1a Added README file
