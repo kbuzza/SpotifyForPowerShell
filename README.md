@@ -22,7 +22,7 @@ Library API:
 - `Remove-SpotifyLibraryAlbums`
 
 Playlists API:
-- `Get-SpotifyPlaylistsPlaylist`
+- `Get-SpotifyPlaylistsInfo`
 - `Get-SpotifyPlaylistsPlaylistPhoto`
 - `Get-SpotifyPlaylistsTracks`
 - `Get-SpotifyPlaylistsUserPlaylists`
@@ -31,14 +31,11 @@ Playlists API:
 - `Save-SpotifyPlaylistsTracks`
 - `Set-SpotifyPlaylistsDetails`
 - `Set-SpotifyPlaylistsReorder`
-<<<<<<< HEAD
 
 Tracks API:
 - `Get-SpotifyTracksAnalysis`
 - `Get-SpotifyTracksFeatures`
 - `Get-SpotifyTracksInfo`
-=======
->>>>>>> 1d21d12539e62059fe43a484df3248965fcea273
 
 **Change Log**
 - v0.1 Initial Commit
@@ -48,9 +45,5 @@ Tracks API:
 - v0.1d Deleting code outside folder
 - v0.2 Added Library API Get functions
 - v0.3 Completed initial Library API
-<<<<<<< HEAD
 - v0.4 Completed initial Playlist API
 - v0.5 Completed initial Tracks API
-=======
-- v0.4 Completed initial Playlists API
->>>>>>> 1d21d12539e62059fe43a484df3248965fcea273
