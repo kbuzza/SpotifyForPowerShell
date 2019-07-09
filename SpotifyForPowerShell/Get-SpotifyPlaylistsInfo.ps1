@@ -1,4 +1,4 @@
-function Get-SpotifyPlaylistsPlaylist {
+function Get-SpotifyPlaylistsInfo {
     <#
         .SYNOPSIS
             This function will return Spotify catalog info for a playlist.
