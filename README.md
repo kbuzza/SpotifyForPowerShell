@@ -40,3 +40,4 @@ Playlists API:
 - v0.1d Deleting code outside folder
 - v0.2 Added Library API Get functions
 - v0.3 Completed initial Library API
+- v0.4 Completed initial Playlists API
