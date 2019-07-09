@@ -37,6 +37,10 @@ Tracks API:
 - `Get-SpotifyTracksFeatures`
 - `Get-SpotifyTracksInfo`
 
+Albums API:
+- `Get-SpotifyAlbumsInfo`
+- `Get-SpotifyAlbumsTracks`
+
 **Change Log**
 - v0.1 Initial Commit
 - v0.1a Added README file
