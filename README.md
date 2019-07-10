@@ -54,6 +54,9 @@ User Profile API:
 - `Get-SpotifyUserProfileInfo`
 - `Get-SpotifyUserProfilePublicInfo`
 
+Search API:
+- `Get-SpotifySearch`
+
 
 **Change Log**
 - v0.1 Initial Commit
@@ -67,3 +70,4 @@ User Profile API:
 - v0.5 Completed initial Tracks API
 - v0.6 Completed initial Albums/Artists APIs
 - v0.7 Completed initial Personalization/User Profile APIs
+- v0.8 Completed initial Search API
