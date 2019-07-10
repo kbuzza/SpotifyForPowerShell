@@ -47,7 +47,7 @@ function Get-SpotifyPlaylistsTracks {
             }
         } while ($uri)
     } else {
-        $uri = "https://api.spotify.com/v1/playlists/$Id/tracks?offset=$Offset&$Limit=100"
+        $uri = "https://api.spotify.com/v1/playlists/$Id/tracks?offset=$Offset&limit=$Limit"
         
         $tracks = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
         $tracks = $tracks.items

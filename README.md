@@ -41,6 +41,13 @@ Albums API:
 - `Get-SpotifyAlbumsInfo`
 - `Get-SpotifyAlbumsTracks`
 
+Artists API:
+- `Get-SpotifyArtistsAlbums`
+- `Get-SpotifyArtistsInfo`
+- `Get-SpotifyArtistsRelatedArtists`
+- `Get-SpotifyArtistsTopTracks`
+
+
 **Change Log**
 - v0.1 Initial Commit
 - v0.1a Added README file
@@ -51,3 +58,4 @@ Albums API:
 - v0.3 Completed initial Library API
 - v0.4 Completed initial Playlist API
 - v0.5 Completed initial Tracks API
+- v0.6 Completed initial Albums/Artists APIs

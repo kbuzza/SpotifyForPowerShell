@@ -25,7 +25,7 @@ function Get-SpotifyAlbumsTracks {
 
         [ValidateRange(0,10000)] [int] $Offset = 0,
 
-        [ValidateRange(1,100)] [int] $Limit = 20,
+        [ValidateRange(1,50)] [int] $Limit = 20,
 
         [switch] $All = $false
     )
@@ -36,7 +36,7 @@ function Get-SpotifyAlbumsTracks {
     
     if ($All) {
 
-        $uri = "https://api.spotify.com/v1/albums/$Id/tracks?offset=0&limit=100"
+        $uri = "https://api.spotify.com/v1/albums/$Id/tracks?offset=0&limit=50"
         do {
 
             $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
@@ -47,7 +47,7 @@ function Get-SpotifyAlbumsTracks {
             }
         } while ($uri)
     } else {
-        $uri = "https://api.spotify.com/v1/albums/$Id/tracks?offset=$Offset&$Limit=100"
+        $uri = "https://api.spotify.com/v1/albums/$Id/tracks?offset=$Offset&limi=$Limit"
         
         $tracks = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
         $tracks = $tracks.items
