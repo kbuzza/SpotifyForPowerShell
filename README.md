@@ -47,6 +47,13 @@ Artists API:
 - `Get-SpotifyArtistsRelatedArtists`
 - `Get-SpotifyArtistsTopTracks`
 
+Personalization API:
+- `Get-SpotifyPersonalizationTop`
+
+User Profile API:
+- `Get-SpotifyUserProfileInfo`
+- `Get-SpotifyUserProfilePublicInfo`
+
 
 **Change Log**
 - v0.1 Initial Commit
@@ -59,3 +66,4 @@ Artists API:
 - v0.4 Completed initial Playlist API
 - v0.5 Completed initial Tracks API
 - v0.6 Completed initial Albums/Artists APIs
+- v0.7 Completed initial Personalization/User Profile APIs
