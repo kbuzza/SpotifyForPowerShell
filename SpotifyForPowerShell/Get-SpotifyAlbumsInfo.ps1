@@ -11,12 +11,18 @@ function Get-SpotifyAlbumsInfo {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Albums
+        [Parameter(Mandatory = $true)] [array] $Albums,
+
+        [string] $Auth
     )
 
     $Albums = [string]::Join(",", $Albums)
 
-    $AuthToken = Get-SpotifyAuthorizationToken
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
 
     $uri = "https://api.spotify.com/v1/albums?ids=$Albums"
 

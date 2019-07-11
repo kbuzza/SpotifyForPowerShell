@@ -18,6 +18,9 @@ function Get-SpotifyPlaylistsTracks {
 
         .PARAMETER All
             Optional. When this parameter is used, every track in the user's library will be returned.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -27,11 +30,17 @@ function Get-SpotifyPlaylistsTracks {
 
         [ValidateRange(1,100)] [int] $Limit = 100,
 
-        [switch] $All = $false
+        [switch] $All = $false,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $tracks = @()
     
     if ($All) {

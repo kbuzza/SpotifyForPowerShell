@@ -24,6 +24,9 @@ function Get-SpotifyPersonalizationTop {
 
         .PARAMETER All
             Optional. When this parameter is used, every one of the top tracks or albums are returned.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -35,11 +38,17 @@ function Get-SpotifyPersonalizationTop {
 
         [ValidateSet("long_term","medium_term","short_term")] [string] $TimeRange = "medium_term",
 
-        [switch] $All = $false
+        [switch] $All = $false,
+
+        [string] $Auth
     )
     
-    $AuthToken = Get-SpotifyAuthorizationToken
-    
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+        
     $items = @()
     
     if ($All) {

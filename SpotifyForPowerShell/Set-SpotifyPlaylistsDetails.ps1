@@ -21,6 +21,9 @@ function Set-SpotifyPlaylistsDetails {
     
         .PARAMETER Description
             Optional. New description for the playlist.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
         
     #>
 
@@ -33,11 +36,17 @@ function Set-SpotifyPlaylistsDetails {
 
         [bool] $Collaborative,
 
-        [string] $Description
+        [string] $Description,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $uri = "https://api.spotify.com/v1/playlists/$Id"
 
     

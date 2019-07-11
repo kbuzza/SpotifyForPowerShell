@@ -9,15 +9,24 @@ function Get-SpotifyLibraryAlbumsContains {
             
         .PARAMETER Albums
             Required. String array of up to 50 album id's.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Albums
+        [Parameter(Mandatory = $true)] [array] $Albums,
+
+        [string] $Auth
     )
 
     $Albums = [string]::Join(",", $Albums)
 
-    $AuthToken = Get-SpotifyAuthorizationToken
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
 
     $uri = "https://api.spotify.com/v1/me/albums/contains?ids=$Albums"
         

@@ -5,7 +5,7 @@ function Get-SpotifySearch {
             tracks or playlists that match a keyword string.
     
         .EXAMPLE
-            C:\Users\kbuzz> Get-SpotifySearch -Query "track:""peach""" -Type "track" -All
+            C:\Users\kbuzz> Get-SpotifySearch -Query "track:""peach""" -Type "track" -Limit 200
             C:\Users\kbuzz> Get-SpotifySearch -Query "peach" -Type "track","album","artist" -Limit 30 -Offset 10
 
         .PARAMETER Query
@@ -23,15 +23,13 @@ function Get-SpotifySearch {
         .PARAMETER Offset
             Optional. Index of the first result to return. Maximum of 10,000.
 
-        .PARAMETER All
-            Optional. When this parameter is used, every item in the search will be returned.
-            
-            Warning: This parameter should only be used when only one type of return object is
-            specified. (i.e. )
-
         .PARAMETER IncludeExternal
             Optional. If IncludeExternal is equal to "audio", then externally hosted
             audio content is included.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
+
     #>
 
     param (
@@ -41,11 +39,11 @@ function Get-SpotifySearch {
 
         [ValidateRange(0,10000)] [int] $Offset = 0,
 
-        [ValidateRange(1,50)] [int] $Limit = 20,
+        [int] $Limit = 20,
 
-        [switch] $All = $false,
+        [string] $IncludeExternal,
 
-        [string] $IncludeExternal
+        [string] $Auth
     )
 
     if ($Type.Count -eq 0) {
@@ -54,13 +52,17 @@ function Get-SpotifySearch {
 
     $Type = [string]::Join(",", $Type)
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $uri = "https://api.spotify.com/v1/search"
 
     $items = @()
     
-    if ($All) {
+    if ($Limit -gt 50) {
         $category = $Type[0] + "s"
 
         $uri += "?q=$Query&type=$Type&offset=0&limit=50"
@@ -77,7 +79,7 @@ function Get-SpotifySearch {
                 $items += $item
             }
 
-        } while ($uri -and $items.Count -le 4950)
+        } while ($uri -and $items.Count -le $Limit - 50)
     } else {
         $uri += "?q=$Query&type=$Type&offset=$Offset&limit=$Limit"
         if ($IncludeExternal -eq "audio") {

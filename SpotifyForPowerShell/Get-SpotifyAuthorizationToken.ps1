@@ -12,6 +12,8 @@ function Get-SpotifyAuthorizationToken {
             C:\Users\kbuzz> Get-SpotifyAuthorizationToken
     #>
     
+    Add-Type -AssemblyName System.Windows.Forms
+
     $clientId = '19ea14240fc04dae8f57243ed42ce785' # User - enter client id from spotify application
     $redirectUri = 'http://localhost:3000/callback' # User - enter redirect url from spotify application
     $pageLoadTime = 5 # User - enter minimum time it takes to load form (may need to test this on your internet)

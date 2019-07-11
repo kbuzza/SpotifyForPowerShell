@@ -14,6 +14,9 @@ function Remove-SpotifyPlaylistsTracks {
         
         .PARAMETER SnapshotId
             Optional. The playlist’s snapshot ID against which changes are made.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -21,11 +24,17 @@ function Remove-SpotifyPlaylistsTracks {
 
         [Parameter(Mandatory = $true)] [array] $Tracks,
 
-        [string] $SnapshotId
+        [string] $SnapshotId,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $uri = "https://api.spotify.com/v1/playlists/$Id/tracks"
 
     if ($null -eq $Tracks -or $Tracks.Length -eq 0) {

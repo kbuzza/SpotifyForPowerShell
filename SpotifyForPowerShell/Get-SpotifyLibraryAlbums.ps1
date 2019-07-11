@@ -16,6 +16,9 @@ function Get-SpotifyLibraryAlbums {
 
         .PARAMETER All
             Optional. When this parameter is used, every album in the user's library will be returned.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -23,10 +26,16 @@ function Get-SpotifyLibraryAlbums {
 
         [ValidateRange(1,50)] [int] $Limit = 20,
         
-        [switch] $All = $false
+        [switch] $All = $false,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
 
     $albums = @()
     

@@ -11,12 +11,18 @@ function Get-SpotifyArtistsInfo {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Artists
+        [Parameter(Mandatory = $true)] [array] $Artists,
+
+        [string] $Auth
     )
 
     $Artists = [string]::Join(",", $Artists)
 
-    $AuthToken = Get-SpotifyAuthorizationToken
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
 
     $uri = "https://api.spotify.com/v1/artists?ids=$Artists"
 

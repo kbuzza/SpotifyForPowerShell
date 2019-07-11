@@ -71,3 +71,4 @@ Search API:
 - v0.6 Completed initial Albums/Artists APIs
 - v0.7 Completed initial Personalization/User Profile APIs
 - v0.8 Completed initial Search API
+- v0.8a Added "Auth" Continuation Parameter

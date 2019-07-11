@@ -8,16 +8,25 @@ function Get-SpotifyTracksFeatures {
             
         .PARAMETER Tracks
             Required. String array of up to 100 track id's.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Tracks
+        [Parameter(Mandatory = $true)] [array] $Tracks,
+
+        [string] $Auth
     )
 
     $Tracks = [string]::Join(",", $Tracks)
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $uri = "https://api.spotify.com/v1/audio-features?ids=$Tracks"
         
     $features = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}

@@ -8,13 +8,22 @@ function Get-SpotifyArtistsRelatedArtists {
             
         .PARAMETER Id
             Required. String representation of artist id.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id
+        [Parameter(Mandatory = $true)] [string] $Id,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
 
     $uri = "https://api.spotify.com/v1/artists/$Id/related-artists"
         

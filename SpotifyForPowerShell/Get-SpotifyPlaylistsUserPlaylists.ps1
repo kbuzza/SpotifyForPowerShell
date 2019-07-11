@@ -20,6 +20,9 @@ function Get-SpotifyPlaylistsUserPlaylists {
         .PARAMETER UserId
             Optional. This parameter specifies a specific user to find playlists from. When this parameter
             is not used, the current user is selected.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -29,11 +32,17 @@ function Get-SpotifyPlaylistsUserPlaylists {
 
         [switch] $All = $false,
 
-        [string] $UserId
+        [string] $UserId,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     if ($UserId) {
         $uri = "https://api.spotify.com/v1/users/$UserId/playlists?offset=$offset&limit=$limit"
     } else {

@@ -20,6 +20,9 @@ function Set-SpotifyPlaylistsReorder {
     
         .PARAMETER SnapshotId
             Optional. Playlist's snapshot id against which the changes are made.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -31,11 +34,17 @@ function Set-SpotifyPlaylistsReorder {
 
         [int] $RangeLength = 1,
 
-        [string] $SnapshotId
+        [string] $SnapshotId,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $uri = "https://api.spotify.com/v1/playlists/$Id/tracks"
 
     

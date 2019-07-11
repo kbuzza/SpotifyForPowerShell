@@ -27,10 +27,16 @@ function Get-SpotifyArtistsAlbums {
 
         [ValidateRange(1,50)] [int] $Limit = 20,
 
-        [switch] $All = $false
+        [switch] $All = $false,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
 
     $albums = @()
     

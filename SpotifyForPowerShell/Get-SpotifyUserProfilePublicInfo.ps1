@@ -8,14 +8,23 @@ function Get-SpotifyUserProfilePublicInfo {
             
         .PARAMETER Id
             Required. String representation of user id.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id
+        [Parameter(Mandatory = $true)] [string] $Id,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $uri = "https://api.spotify.com/v1/users/$Id"
         
     $user = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}

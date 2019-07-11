@@ -14,6 +14,9 @@ function Save-SpotifyPlaylistsTracks {
         
         .PARAMETER Position
             Optional. Position to insert the tracks into in order.
+
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -21,11 +24,17 @@ function Save-SpotifyPlaylistsTracks {
 
         [Parameter(Mandatory = $true)] [array] $Tracks,
 
-        [int] $Position = 0
+        [int] $Position = 0,
+
+        [string] $Auth
     )
 
-    $AuthToken = Get-SpotifyAuthorizationToken
-
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
+    
     $uri = "https://api.spotify.com/v1/playlists/$Id/tracks?position=$Position"
 
     if ($null -eq $Tracks -or $Tracks.Length -eq 0) {
