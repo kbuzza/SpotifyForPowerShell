@@ -24,7 +24,7 @@ function Save-SpotifyPlaylistsTracks {
 
         [Parameter(Mandatory = $true)] [array] $Tracks,
 
-        [int] $Position = 0,
+        [int] $Position,
 
         [string] $Auth
     )
