@@ -57,6 +57,23 @@ User Profile API:
 Search API:
 - `Get-SpotifySearch`
 
+Browse API:
+- `Get-SpotifyBrowseCategories`
+- `Get-SpotifyBrowseCategoryInfo`
+- `Get-SpotifyBrowseCategoryPlaylists`
+- `Get-SpotifyBrowseFeaturedPlaylists`
+- `Get-SpotifyBrowseNewReleases`
+- `Get-SpotifyBrowseRecommendationGenres`
+- `Get-SpotifyBrowseRecommendations`
+
+Follow API:
+- `Get-SpotifyFollowFollowingState`
+- `Get-SpotifyFollowUserFollowingArtists`
+- `Invoke-SpotifyFollowPerson`
+- `Invoke-SpotifyFollowPlaylist`
+- `Remove-SpotifyFollowPerson`
+- `Remove-SpotifyFollowPlaylist`
+
 **Sample Projects:**
 
 Playlist Sentence Creator:
@@ -79,3 +96,4 @@ Playlist Sentence Creator:
 - v0.8 Completed initial Search API
 - v0.8a Added "Auth" Continuation Parameter
 - v0.9 Added sample project - Playlist Sentence Creator
+- v0.10 Completed intial Browse/Follow APIs
