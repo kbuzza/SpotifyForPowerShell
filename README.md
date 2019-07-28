@@ -74,6 +74,21 @@ Follow API:
 - `Remove-SpotifyFollowPerson`
 - `Remove-SpotifyFollowPlaylist`
 
+Player API:
+- `Get-SpotifyPlayerCurrentPlayback`
+- `Get-SpotifyPlayerCurrentTrack`
+- `Get-SpotifyPlayerDevices`
+- `Get-SpotifyPlayerRecentlyPlayed`
+- `Invoke-SpotifyPlayerSkipNext`
+- `Invoke-SpotifyPlayerSkipPrevious`
+- `Invoke-SpotifyPlayerTransferPlayback`
+- `Set-SpotifyPlayerPause`
+- `Set-SpotifyPlayerPlay`
+- `Set-SpotifyPlayerPosition`
+- `Set-SpotifyPlayerRepeat`
+- `Set-SpotifyPlayerShuffle`
+- `Set-SpotifyPlayerVolume`
+
 **Sample Projects:**
 
 Playlist Sentence Creator:
@@ -97,3 +112,4 @@ Playlist Sentence Creator:
 - v0.8a Added "Auth" Continuation Parameter
 - v0.9 Added sample project - Playlist Sentence Creator
 - v0.10 Completed intial Browse/Follow APIs
+- v0.11 Completed initial Player API
