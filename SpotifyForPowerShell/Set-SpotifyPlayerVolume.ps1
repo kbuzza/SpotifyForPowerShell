@@ -14,14 +14,17 @@ function Set-SpotifyPlayerVolume {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [ValidateRange(0,100)] [int] $VolumePercent,
+        [Parameter(Mandatory = $true)]
+        [ValidateRange(0,100)]
+        [int] $VolumePercent,
 
+        [Parameter(Mandatory = $false)]
         [string] $DeviceId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

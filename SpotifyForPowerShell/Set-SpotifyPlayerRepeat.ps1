@@ -15,14 +15,17 @@ function Set-SpotifyPlayerRepeat {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [ValidateSet("track","context","off")] [string] $State,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("track","context","off")]
+        [string] $State,
 
+        [Parameter(Mandatory = $false)]
         [string] $DeviceId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

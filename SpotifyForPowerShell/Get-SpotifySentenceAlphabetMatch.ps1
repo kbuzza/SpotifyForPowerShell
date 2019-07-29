@@ -11,6 +11,7 @@ function Get-SpotifySentenceAlphabetMatch {
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [string] $Letter
     )
     

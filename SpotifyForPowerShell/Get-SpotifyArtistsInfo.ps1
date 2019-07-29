@@ -11,8 +11,10 @@ function Get-SpotifyArtistsInfo {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Artists,
+        [Parameter(Mandatory = $true)]
+        [array] $Artists,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

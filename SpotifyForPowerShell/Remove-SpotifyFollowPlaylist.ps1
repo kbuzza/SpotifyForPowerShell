@@ -14,8 +14,10 @@ function Remove-SpotifyFollowPlaylist {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $PlaylistId,
+        [Parameter(Mandatory = $true)]
+        [string] $PlaylistId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

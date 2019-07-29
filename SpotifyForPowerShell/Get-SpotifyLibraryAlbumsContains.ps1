@@ -15,8 +15,10 @@ function Get-SpotifyLibraryAlbumsContains {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Albums,
+        [Parameter(Mandatory = $true)]
+        [array] $Albums,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -31,5 +33,6 @@ function Get-SpotifyLibraryAlbumsContains {
     $uri = "https://api.spotify.com/v1/me/albums/contains?ids=$Albums"
         
     $bools = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+    
     return $bools
 }

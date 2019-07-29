@@ -14,8 +14,10 @@ function Get-SpotifyTracksAnalysis {
     #>
 
     param (
-        [Parameter(Mandatory=$true)] [string] $Id,
+        [Parameter(Mandatory=$true)]
+        [string] $Id,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

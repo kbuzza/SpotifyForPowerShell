@@ -14,8 +14,10 @@ function Get-SpotifyPlaylistsInfo {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -28,5 +30,6 @@ function Get-SpotifyPlaylistsInfo {
     $uri = "https://api.spotify.com/v1/playlists/$Id"
         
     $playlist = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+    
     return $playlist
 }

@@ -24,20 +24,25 @@ function Set-SpotifyPlaylistsDetails {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
+        [Parameter(Mandatory = $false)]
         [string] $Name,
 
+        [Parameter(Mandatory = $false)]
         [bool] $Public,
 
+        [Parameter(Mandatory = $false)]
         [bool] $Collaborative,
 
+        [Parameter(Mandatory = $false)]
         [string] $Description,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -63,6 +68,7 @@ function Set-SpotifyPlaylistsDetails {
     if ($Description) {
         $body += ",""description"":""$Description"""
     }    
+
     $body += "}"
     
     if ($body.Contains(",")) {
@@ -70,5 +76,6 @@ function Set-SpotifyPlaylistsDetails {
     }
         
     $playlist = Invoke-RestMethod -Uri $uri -Method Put -Headers @{Authorization="Bearer $AuthToken"} -Body $body
+    
     return $playlist
 }

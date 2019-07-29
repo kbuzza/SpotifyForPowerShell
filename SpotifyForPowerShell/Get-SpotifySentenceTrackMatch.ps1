@@ -14,8 +14,10 @@ function Get-SpotifySentenceTrackMatch {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Phrase,
+        [Parameter(Mandatory = $true)]
+        [string] $Phrase,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -25,22 +27,22 @@ function Get-SpotifySentenceTrackMatch {
         $AuthToken = Get-SpotifyAuthorizationToken
     }
 
-        $count = 1
+    $count = 1
 
-        $uri = "https://api.spotify.com/v1/search"
-        $uri += "?q=track:""$Phrase""&type=track&offset=0&limit=50"
+    $uri = "https://api.spotify.com/v1/search"
+    $uri += "?q=track:""$Phrase""&type=track&offset=0&limit=50"
 
-        do {
-            $data = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
-            $uri = $data.tracks.next
-            foreach ($item in $data.tracks.items) {
-                if (($item.name).ToLower() -eq $Phrase.toLower()) {
-                    return $item.id
-                }
-                $count++
+    do {
+        $data = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+        $uri = $data.tracks.next
+        
+        foreach ($item in $data.tracks.items) {
+            if (($item.name).ToLower() -eq $Phrase.toLower()) {
+                return $item.id
             }
-
-        } while ($uri -and $count -le 10000)
+            $count++
+        }
+    } while ($uri -and $count -le 10000)
     
     return $null
 }

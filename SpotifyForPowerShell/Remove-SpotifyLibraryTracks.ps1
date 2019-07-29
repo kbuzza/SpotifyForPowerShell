@@ -14,8 +14,10 @@ function Remove-SpotifyLibraryTracks {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Tracks,
+        [Parameter(Mandatory = $true)]
+        [array] $Tracks,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

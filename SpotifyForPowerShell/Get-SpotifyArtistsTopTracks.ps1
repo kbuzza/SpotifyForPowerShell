@@ -14,8 +14,10 @@ function Get-SpotifyArtistsTopTracks {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -24,8 +26,10 @@ function Get-SpotifyArtistsTopTracks {
     } else {
         $AuthToken = Get-SpotifyAuthorizationToken
     }
+
     $uri = "https://api.spotify.com/v1/artists/$Id/top-tracks?market=from_token"
         
     $tracks = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+    
     return $tracks
 }

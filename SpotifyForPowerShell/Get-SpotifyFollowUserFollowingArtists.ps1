@@ -21,12 +21,17 @@ function Get-SpotifyFollowUserFollowingArtists {
     #>
 
     param (
-        [ValidateRange(1,50)] [int] $limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [int] $limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [string] $After,
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -40,6 +45,7 @@ function Get-SpotifyFollowUserFollowingArtists {
 
     if ($All) {
         $uri = "https://api.spotify.com/v1/me/following?type=artist&limit=50"
+
         do {
             $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
             $uri = $query.artists.next
@@ -47,10 +53,10 @@ function Get-SpotifyFollowUserFollowingArtists {
             foreach ($item in $query.artists.items) {
                 $artists += $item
             }
-
         } while ($uri)
     } else {
         $uri = "https://api.spotify.com/v1/me/following?type=artist&limit=$Limit"
+        
         if ($After) {
             $uri += "&after=$After"
         }

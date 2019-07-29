@@ -17,10 +17,13 @@ function Invoke-SpotifyFollowPlaylist {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $PlaylistId,
+        [Parameter(Mandatory = $true)]
+        [string] $PlaylistId,
 
+        [Parameter(Mandatory = $false)]
         [bool] $Public = $true,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -29,6 +32,7 @@ function Invoke-SpotifyFollowPlaylist {
     } else {
         $AuthToken = Get-SpotifyAuthorizationToken
     }
+    
     if ($Public) {
         $body = "{""public"":true}"
     } else {

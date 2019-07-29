@@ -26,16 +26,22 @@ function Set-SpotifyPlaylistsReorder {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
-        [Parameter(Mandatory = $true)] [int] $RangeStart,
+        [Parameter(Mandatory = $true)]
+        [int] $RangeStart,
 
-        [Parameter(Mandatory = $true)] [int] $InsertBefore,
+        [Parameter(Mandatory = $true)]
+        [int] $InsertBefore,
 
+        [Parameter(Mandatory = $false)]
         [int] $RangeLength = 1,
 
+        [Parameter(Mandatory = $false)]
         [string] $SnapshotId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -47,14 +53,15 @@ function Set-SpotifyPlaylistsReorder {
     
     $uri = "https://api.spotify.com/v1/playlists/$Id/tracks"
 
-    
     $body = "{""range_start"":$RangeStart,""insert_before"":$InsertBefore,""range_length"":$RangeLength"
     
     if ($SnapshotId) {
         $body += ",""snapshot_id"":""$SnapshotId"""
     }
+
     $body += "}"
 
     $newSnapshotId = Invoke-RestMethod -Uri $uri -Method Put -Headers @{Authorization="Bearer $AuthToken"} -Body $body
+    
     return $newSnapshotId
 }

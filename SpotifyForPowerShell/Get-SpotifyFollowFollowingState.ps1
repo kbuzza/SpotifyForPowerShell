@@ -17,10 +17,14 @@ function Get-SpotifyFollowFollowingState {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [ValidateSet("artist","user")] [string] $Type,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("artist","user")]
+        [string] $Type,
 
-        [Parameter(Mandatory = $true)] [array] $Ids,
+        [Parameter(Mandatory = $true)]
+        [array] $Ids,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

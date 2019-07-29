@@ -14,8 +14,10 @@ function Get-SpotifyArtistsRelatedArtists {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -28,5 +30,6 @@ function Get-SpotifyArtistsRelatedArtists {
     $uri = "https://api.spotify.com/v1/artists/$Id/related-artists"
         
     $tracks = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+    
     return $tracks
 }

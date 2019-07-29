@@ -14,8 +14,10 @@ function Save-SpotifyLibraryAlbums {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Albums,
+        [Parameter(Mandatory = $true)]
+        [array] $Albums,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

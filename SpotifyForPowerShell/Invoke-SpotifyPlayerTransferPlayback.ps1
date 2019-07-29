@@ -11,12 +11,13 @@ function Invoke-SpotifyPlayerTransferPlayback {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $DeviceId,
+        [Parameter(Mandatory = $true)]
+        [string] $DeviceId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

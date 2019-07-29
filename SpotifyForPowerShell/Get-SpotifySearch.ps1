@@ -29,20 +29,26 @@ function Get-SpotifySearch {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-
     #>
 
     param (
-        [Parameter(Mandatory=$true)] [string] $Query,
+        [Parameter(Mandatory=$true)]
+        [string] $Query,
 
-        [Parameter(Mandatory=$true)] [array] $Type,
+        [Parameter(Mandatory=$true)]
+        [array] $Type,
 
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
+        [Parameter(Mandatory = $false)]
         [int] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [string] $IncludeExternal,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -71,17 +77,16 @@ function Get-SpotifySearch {
         }
         
         do {
-
             $data = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
             $uri = $data.$category.next
 
             foreach ($item in $data.$category.items) {
                 $items += $item
             }
-
         } while ($uri -and $items.Count -le $Limit - 50)
     } else {
         $uri += "?q=$Query&type=$Type&offset=$Offset&limit=$Limit"
+        
         if ($IncludeExternal -eq "audio") {
             $uri += "&include_external=audio"
         }

@@ -17,10 +17,13 @@ function Get-SpotifyFollowUserFollowing {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $PlaylistId,
+        [Parameter(Mandatory = $true)]
+        [string] $PlaylistId,
 
-        [Parameter(Mandatory = $true)] [array] $Ids,
+        [Parameter(Mandatory = $true)]
+        [array] $Ids,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

@@ -11,6 +11,7 @@ function Get-SpotifyBrowseRecommendationGenres {
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

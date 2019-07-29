@@ -26,14 +26,21 @@ function Get-SpotifyBrowseFeaturedPlaylists {
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [string] $Timestamp,
 
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
-        [ValidateRange(1,50)] [int] $Limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [int] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -46,8 +53,8 @@ function Get-SpotifyBrowseFeaturedPlaylists {
     $playlists = @()
     
     if ($All) {
-
         $uri = "https://api.spotify.com/v1/browse/featured-playlists?offset=0&limit=50"
+
         if ($Timestamp) {
             $uri += "&timestamp=$Timestamp"
         }
@@ -59,11 +66,10 @@ function Get-SpotifyBrowseFeaturedPlaylists {
             foreach ($item in $query.playlists.items) {
                 $playlists += $item
             }
-
         } while ($uri)
     } else {
-
         $uri = "https://api.spotify.com/v1/browse/featured-playlists?offset=$Offset&limit=$Limit"
+        
         if ($Timestamp) {
             $uri += "&timestamp=$Timestamp"
         }

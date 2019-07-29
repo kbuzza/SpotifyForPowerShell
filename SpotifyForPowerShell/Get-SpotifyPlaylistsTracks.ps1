@@ -24,14 +24,21 @@ function Get-SpotifyPlaylistsTracks {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
-        [ValidateRange(1,100)] [int] $Limit = 100,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,100)]
+        [int] $Limit = 100,
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -44,10 +51,9 @@ function Get-SpotifyPlaylistsTracks {
     $tracks = @()
     
     if ($All) {
-
         $uri = "https://api.spotify.com/v1/playlists/$Id/tracks?offset=0&limit=100"
-        do {
 
+        do {
             $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
             $uri = $query.next
 
@@ -60,7 +66,6 @@ function Get-SpotifyPlaylistsTracks {
         
         $tracks = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
         $tracks = $tracks.items
-
     }
 
     return $tracks

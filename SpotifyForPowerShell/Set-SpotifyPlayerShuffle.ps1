@@ -14,14 +14,16 @@ function Set-SpotifyPlayerShuffle {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [bool] $State,
+        [Parameter(Mandatory = $true)]
+        [bool] $State,
 
+        [Parameter(Mandatory = $false)]
         [string] $DeviceId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

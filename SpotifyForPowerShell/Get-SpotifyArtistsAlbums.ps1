@@ -21,14 +21,21 @@ function Get-SpotifyArtistsAlbums {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
-        [ValidateRange(1,50)] [int] $Limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [int] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -41,10 +48,9 @@ function Get-SpotifyArtistsAlbums {
     $albums = @()
     
     if ($All) {
-
         $uri = "https://api.spotify.com/v1/artists/$Id/albums?offset=0&limit=50"
-        do {
 
+        do {
             $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
             $uri = $query.next
 
@@ -57,7 +63,6 @@ function Get-SpotifyArtistsAlbums {
         
         $albums = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
         $albums = $albums.items
-
     }
 
     return $albums

@@ -11,6 +11,7 @@ function Get-SpotifyUserProfileInfo {
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -23,5 +24,6 @@ function Get-SpotifyUserProfileInfo {
     $uri = "https://api.spotify.com/v1/me"
         
     $user = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+    
     return $user
 }

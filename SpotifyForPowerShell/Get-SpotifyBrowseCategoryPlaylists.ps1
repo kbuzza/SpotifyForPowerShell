@@ -23,14 +23,21 @@ function Get-SpotifyBrowseCategoryPlaylists {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
-        [ValidateRange(1,50)] [int] $Limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [int] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -44,6 +51,7 @@ function Get-SpotifyBrowseCategoryPlaylists {
     
     if ($All) {
         $uri = "https://api.spotify.com/v1/browse/categories/$Id/playlists?offset=0&limit=50"
+
         do {
             $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
             $uri = $query.playlists.next
@@ -53,7 +61,6 @@ function Get-SpotifyBrowseCategoryPlaylists {
             }
         } while ($uri)
     } else {
-
         $uri = "https://api.spotify.com/v1/browse/categories/$Id/playlists?offset=$Offset&limit=$Limit"
         
         $playlists = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}

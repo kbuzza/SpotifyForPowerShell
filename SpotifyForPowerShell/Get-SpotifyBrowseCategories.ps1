@@ -20,12 +20,18 @@ function Get-SpotifyBrowseCategories {
     #>
 
     param (
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
-        [ValidateRange(1,50)] [int] $Limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [int] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -39,6 +45,7 @@ function Get-SpotifyBrowseCategories {
     
     if ($All) {
         $uri = "https://api.spotify.com/v1/browse/categories?offset=0&limit=50"
+
         do {
             $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
             $uri = $query.categories.next
@@ -46,10 +53,8 @@ function Get-SpotifyBrowseCategories {
             foreach ($item in $query.categories.items) {
                 $categories += $item
             }
-
         } while ($uri)
     } else {
-
         $uri = "https://api.spotify.com/v1/browse/categories?offset=$Offset&limit=$Limit"
         
         $categories = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}

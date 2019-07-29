@@ -30,16 +30,26 @@ function Get-SpotifyPersonalizationTop {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [ValidateSet("artists","tracks")] [string] $Type,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("artists","tracks")]
+        [string] $Type,
 
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
-        [ValidateRange(1,50)] [int] $Limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [int] $Limit = 20,
 
-        [ValidateSet("long_term","medium_term","short_term")] [string] $TimeRange = "medium_term",
+        [Parameter(Mandatory = $false)]
+        [ValidateSet("long_term","medium_term","short_term")]
+        [string] $TimeRange = "medium_term",
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
     
@@ -57,7 +67,6 @@ function Get-SpotifyPersonalizationTop {
         $uri += "?offset=0&limit=50&time_range=$TimeRange"
 
         do {
-
             $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
             $uri = $query.next
 

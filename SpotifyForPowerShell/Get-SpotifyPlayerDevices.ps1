@@ -8,10 +8,10 @@ function Get-SpotifyPlayerDevices {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

@@ -24,18 +24,22 @@ function Set-SpotifyPlayerPlay {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [string] $DeviceId,
 
+        [Parameter(Mandatory = $false)]
         [string] $ContextUri,
 
+        [Parameter(Mandatory = $false)]
         [int] $PositionInMilliseconds,
 
+        [Parameter(Mandatory = $false)]
         [int] $Offset,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

@@ -14,8 +14,10 @@ function Get-SpotifyTracksFeatures {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Tracks,
+        [Parameter(Mandatory = $true)]
+        [array] $Tracks,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -30,5 +32,6 @@ function Get-SpotifyTracksFeatures {
     $uri = "https://api.spotify.com/v1/audio-features?ids=$Tracks"
         
     $features = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+    
     return $features
 }

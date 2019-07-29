@@ -15,8 +15,10 @@ function Get-SpotifyLibraryTracksContains {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [array] $Tracks,
+        [Parameter(Mandatory = $true)]
+        [array] $Tracks,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -31,5 +33,6 @@ function Get-SpotifyLibraryTracksContains {
     $uri = "https://api.spotify.com/v1/me/tracks/contains?ids=$Tracks"
         
     $bools = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
+    
     return $bools
 }

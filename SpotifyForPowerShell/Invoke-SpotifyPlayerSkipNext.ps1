@@ -10,13 +10,14 @@ function Invoke-SpotifyPlayerSkipNext {
             Optional. The id of the device this command is targeting.
 
         .PARAMETER Auth
-            Optional. A continuation authorization token.
-        
+            Optional. A continuation authorization token.    
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [string] $DeviceId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

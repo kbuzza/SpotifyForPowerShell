@@ -18,16 +18,20 @@ function Set-SpotifyPlayerPosition {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [ValidateRange(1,[int]::MaxValue)] [int] $Position,
+        [Parameter(Mandatory = $true)]
+        [ValidateRange(1,[int]::MaxValue)]
+        [int] $Position,
 
+        [Parameter(Mandatory = $false)]
         [string] $DeviceId,
 
+        [Parameter(Mandatory = $false)]
         [switch] $SkipSong = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

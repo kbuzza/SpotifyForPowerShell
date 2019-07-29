@@ -24,20 +24,26 @@ function Save-SpotifyPlaylistsPlaylist {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
-        [Parameter(Mandatory = $true)] [ValidateNotNull()] [string] $Name,
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNull()]
+        [string] $Name,
 
+        [Parameter(Mandatory = $false)]
         [bool] $Public = $true,
 
+        [Parameter(Mandatory = $false)]
         [bool] $Collaborative = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $Description = "",
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -62,5 +68,6 @@ function Save-SpotifyPlaylistsPlaylist {
     $body += "}"
         
     $playlist = Invoke-RestMethod -Uri $uri -Method Post -Headers @{Authorization="Bearer $AuthToken"} -Body $body
+    
     return $playlist
 }

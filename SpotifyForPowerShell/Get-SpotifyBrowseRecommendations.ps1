@@ -1,4 +1,3 @@
-Get-SpotifyBrowseRecommendationGenres
 function Get-SpotifyBrowseRecommendations {
     <#
         .SYNOPSIS
@@ -38,20 +37,28 @@ function Get-SpotifyBrowseRecommendations {
     #>
 
     param (
+        [Parameter(Mandatory = $false)]
         [array] $SeedArtists = @(),
 
+        [Parameter(Mandatory = $false)]
         [array] $SeedGenres = @(),
 
+        [Parameter(Mandatory = $false)]
         [array] $SeedTracks = @(),
 
+        [Parameter(Mandatory = $false)]
         [ValidateRange(1,100)] [int] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [array] $MinList = @(),
 
+        [Parameter(Mandatory = $false)]
         [array] $MaxList = @(),
 
+        [Parameter(Mandatory = $false)]
         [array] $TargetList = @(),
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -74,7 +81,6 @@ function Get-SpotifyBrowseRecommendations {
         return $null
     }
 
-
     if ($SeedArtists.Count -gt 0) {
         $uri += "&seed_artists="
         foreach ($seed in $SeedArtists) {
@@ -82,7 +88,6 @@ function Get-SpotifyBrowseRecommendations {
         }
     }
     $uri = $uri.Substring(0, $uri.Length - 1)
-
 
     if ($SeedGenres.Count -gt 0) {
         $uri += "&seed_genres="
@@ -92,7 +97,6 @@ function Get-SpotifyBrowseRecommendations {
     }
     $uri = $uri.Substring(0, $uri.Length - 1)
 
-
     if ($SeedTracks.Count -gt 0) {
         $uri += "&seed_tracks="
         foreach ($seed in $SeedArtists) {
@@ -100,21 +104,18 @@ function Get-SpotifyBrowseRecommendations {
         }
     }
     $uri = $uri.Substring(0, $uri.Length - 1)
-
-    
+ 
     if ($MinList.Count -gt 0) {
         for ($i = 0; $i -lt $MinList.Count; $i+=2) {
             $uri += "&min_" + $MinList[$i] + "=" + $MinList[$i + 1]
         }
     }
 
-
     if ($MaxList.Count -gt 0) {
         for ($i = 0; $i -lt $MaxList.Count; $i+=2) {
             $uri += "&min_" + $MaxList[$i] + "=" + $MaxList[$i + 1]
         }
     }
-
 
     if ($TargetList.Count -gt 0) {
         for ($i = 0; $i -lt $TargetList.Count; $i+=2) {
@@ -123,6 +124,6 @@ function Get-SpotifyBrowseRecommendations {
     }
 
     $query = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}
-    return $uri
-    return $query.tracks
+
+    return $query
 }

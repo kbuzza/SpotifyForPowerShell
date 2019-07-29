@@ -4,7 +4,7 @@ A PowerShell module for interacting directly with the Spotify API!
 
 **How it works:**
 
-This module works as a wrapper for the Spotify Web API. It lets you search for songs, albums, and playlists both in and out of your library. It also allows to you connect to Spotify playback in real time. To set up the module, all you need to do is enter your Client Id and Callback into Get-SpotifyAuthorizationToken.ps1 (for help creating a Spotify application, see https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app). Lastly, adjust your page load time in Get-SpotifyAuthorizationToken (this is most easily done through personal testing). Once these values are entered, the module should be good to go!
+This module works as a wrapper for the Spotify Web API. It contains a PowerShell function corresponding to each listed Spotify API commands. To set up the module, all you need to do is enter your Client Id and Callback into Get-SpotifyAuthorizationToken.ps1 (for help creating a Spotify application, see https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app). Lastly, adjust your page load time in Get-SpotifyAuthorizationToken (this is most easily done through personal testing and 5 seconds is recommended).
 
 **Current function implementations:**
 
@@ -97,19 +97,16 @@ Playlist Sentence Creator:
 - `Get-SpotifySentenceAlphabetMatch`
 
 **Change Log:**
-- v0.1 Initial Commit
-- v0.1a Added README file
-- v0.1b Updated README markdown
-- v0.1c Added code folder
-- v0.1d Deleting code outside folder
-- v0.2 Added Library API Get functions
-- v0.3 Completed initial Library API
-- v0.4 Completed initial Playlist API
-- v0.5 Completed initial Tracks API
-- v0.6 Completed initial Albums/Artists APIs
-- v0.7 Completed initial Personalization/User Profile APIs
-- v0.8 Completed initial Search API
-- v0.8a Added "Auth" Continuation Parameter
-- v0.9 Added sample project - Playlist Sentence Creator
-- v0.10 Completed intial Browse/Follow APIs
+- v1.0 Initial Release (Current)
 - v0.11 Completed initial Player API
+- v0.10 Completed intial Browse/Follow APIs
+- v0.9 Added sample project - Playlist Sentence Creator
+- v0.8a Added "Auth" Continuation Parameter
+- v0.8 Completed initial Search API
+- v0.7 Completed initial Personalization/User Profile APIs
+- v0.6 Completed initial Albums/Artists APIs
+- v0.5 Completed initial Tracks API
+- v0.4 Completed initial Playlist API
+- v0.3 Completed initial Library API
+- v0.2 Added Library API Get functions
+- v0.1 Initial Commit

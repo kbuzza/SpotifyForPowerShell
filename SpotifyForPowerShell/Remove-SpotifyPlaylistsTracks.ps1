@@ -20,12 +20,16 @@ function Remove-SpotifyPlaylistsTracks {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
-        [Parameter(Mandatory = $true)] [array] $Tracks,
+        [Parameter(Mandatory = $true)]
+        [array] $Tracks,
 
+        [Parameter(Mandatory = $false)]
         [string] $SnapshotId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -49,8 +53,8 @@ function Remove-SpotifyPlaylistsTracks {
                 $body += ",{""uri"":""spotify:track:" + $Tracks[$i] + """}"
             }
         }
-        $body += "]"
 
+        $body += "]"
     }
 
     if ($SnapshotId) {
@@ -60,5 +64,6 @@ function Remove-SpotifyPlaylistsTracks {
     }
 
     $newSnapshotId = Invoke-RestMethod -Uri $uri -Method Delete -Headers @{Authorization="Bearer $AuthToken"} -Body $body
+    
     return $newSnapshotId
 }

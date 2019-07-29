@@ -21,16 +21,20 @@ function Get-SpotifyPlayerRecentlyPlayed {
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
-        
     #>
 
     param (
-        [ValidateRange(1,50)] [string] $Limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [string] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [string] $Before,
 
+        [Parameter(Mandatory = $false)]
         [string] $After,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 

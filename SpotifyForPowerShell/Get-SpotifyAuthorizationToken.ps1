@@ -28,6 +28,7 @@ function Get-SpotifyAuthorizationToken {
         Size = New-Object System.Drawing.Size(850, 100)
         StartPosition = "CenterScreen" 
     }
+
     $Form = New-Object 'System.Windows.Forms.Form' -Property $FormProperties
     $Timer = New-Object 'System.Windows.Forms.Timer'
     $InitialFormWindowState = New-Object 'System.Windows.Forms.FormWindowState'
@@ -39,7 +40,6 @@ function Get-SpotifyAuthorizationToken {
     }
 
     $Timer_Tick = {
-    	#Use Get-Date for Time Accuracy
     	[TimeSpan]$span = $script:StartTime - (Get-Date)
     
     	if ($span.TotalSeconds -le 0) {
@@ -49,19 +49,16 @@ function Get-SpotifyAuthorizationToken {
     }
 
     $Form_StateCorrection_Load = {
-    	#Correct the initial state of the form
     	$Form.WindowState = $InitialFormWindowState
     }
 
     $Form_Cleanup_FormClosed = {
-    	#Remove all event handlers
     	try {
     		$Form.remove_Load($Form_Load)
     		$Timer.remove_Tick($Timer_Tick)
     		$Form.remove_Load($Form_StateCorrection_Load)
     		$Form.remove_FormClosed($Form_Cleanup_FormClosed)
-    	}
-    	catch [Exception] { }
+    	} catch [Exception] {}
     }
 
     $Form.SuspendLayout()
@@ -72,6 +69,7 @@ function Get-SpotifyAuthorizationToken {
     $BrowserProperties = @{
         Dock = "Fill"
     }
+
     $Browser = New-Object System.Windows.Forms.WebBrowser -Property $BrowserProperties
     $Form.Controls.Add($Browser)
     $Browser.Navigate($AuthUri)
@@ -79,17 +77,17 @@ function Get-SpotifyAuthorizationToken {
     $Form.add_Load($Form_Load)
 
     $Timer.add_Tick($Timer_Tick)
+
     $Form.ResumeLayout()
-    #Save the initial state of the form
+
     $InitialFormWindowState = $Form.WindowState
-    #Init the OnLoad event to correct the initial state of the form
+
     $Form.add_Load($Form_StateCorrection_Load)
-    #Clean up the control events
     $Form.add_FormClosed($Form_Cleanup_FormClosed)
-    #Show the Form
     $Form.ShowDialog() | Out-Null
 
     $authToken = $Browser.Url.Fragment
     $authToken = $authToken.Substring($authToken.IndexOf('=') + 1, $authToken.IndexOf('&') - $authToken.IndexOf('=') - 1)
+    
     return $authToken
 }

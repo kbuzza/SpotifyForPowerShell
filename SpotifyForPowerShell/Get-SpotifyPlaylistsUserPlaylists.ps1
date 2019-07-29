@@ -5,7 +5,6 @@ function Get-SpotifyPlaylistsUserPlaylists {
     
         .EXAMPLE
             C:\Users\kbuzz> Get-SpotifyPlaylistsUserPlaylists -Offset 20 -Limit 30 -UserId "yaboybuzza"
-            C:\Users\kbuzz> Get-SpotifyPlaylistsUserPlaylists -All
             
         .PARAMETER Offset
             Optional. Must be between 0 and 10000. Represents the starting point of the search, with an offset of 0 meaning
@@ -26,14 +25,21 @@ function Get-SpotifyPlaylistsUserPlaylists {
     #>
 
     param (
-        [ValidateRange(0,10000)] [int] $Offset = 0,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(0,10000)]
+        [int] $Offset = 0,
 
-        [ValidateRange(1,50)] [int] $Limit = 20,
+        [Parameter(Mandatory = $false)]
+        [ValidateRange(1,50)]
+        [int] $Limit = 20,
 
+        [Parameter(Mandatory = $false)]
         [switch] $All = $false,
 
+        [Parameter(Mandatory = $false)]
         [string] $UserId,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -58,7 +64,6 @@ function Get-SpotifyPlaylistsUserPlaylists {
             foreach ($item in $query.items) {
                 $playlists += $item
             }
-
         } while ($uri)
     } else {
         $playlists = Invoke-RestMethod -Uri $uri -Method Get -Headers @{Authorization="Bearer $AuthToken"}

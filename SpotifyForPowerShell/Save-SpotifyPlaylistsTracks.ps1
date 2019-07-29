@@ -20,12 +20,16 @@ function Save-SpotifyPlaylistsTracks {
     #>
 
     param (
-        [Parameter(Mandatory = $true)] [string] $Id,
+        [Parameter(Mandatory = $true)]
+        [string] $Id,
 
-        [Parameter(Mandatory = $true)] [array] $Tracks,
+        [Parameter(Mandatory = $true)]
+        [array] $Tracks,
 
+        [Parameter(Mandatory = $false)]
         [int] $Position,
 
+        [Parameter(Mandatory = $false)]
         [string] $Auth
     )
 
@@ -54,5 +58,6 @@ function Save-SpotifyPlaylistsTracks {
     }
 
     $newSnapshotId = Invoke-RestMethod -Uri $uri -Method Post -Headers @{Authorization="Bearer $AuthToken"} -Body $body
+    
     return $newSnapshotId
 }
