@@ -102,8 +102,8 @@ Playlist Sentence Creator:
 - `Get-SpotifySentenceAlphabetMatch`
 
 **Change Log:**
-- v1.1 Added API folders and implemented manifest module
-- v1.0 Initial Release (Current)
+- v1.1 Added API folders and implemented manifest module (Current)
+- v1.0 Initial Release
 - v0.11 Completed initial Player API
 - v0.10 Completed intial Browse/Follow APIs
 - v0.9 Added sample project - Playlist Sentence Creator
