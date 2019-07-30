@@ -2,7 +2,7 @@ function Get-SpotifyAuthorizationToken {
     <#
         .SYNOPSIS
             This function generates a spotify authorization token using the users Application Client Id and Redirect URI.
-            It will load a form and use that to generate an auth token. The pageLoadTime variable can be adjusted after
+            It will load a form and use that to generate an auth token. The PageLoadTime variable can be adjusted after
             testing how long this form takes to fully load on the users personal computer.
 
             Note: The first time running this function may prompt the user to enter their Spotify username and password, but
@@ -14,13 +14,9 @@ function Get-SpotifyAuthorizationToken {
     
     Add-Type -AssemblyName System.Windows.Forms
 
-    $clientId = '19ea14240fc04dae8f57243ed42ce785' # User - enter client id from spotify application
-    $redirectUri = 'http://localhost:3000/callback' # User - enter redirect url from spotify application
-    $pageLoadTime = 5 # User - enter minimum time it takes to load form (may need to test this on your internet)
-
     $AuthUri = "https://accounts.spotify.com/en/authorize?" +
-               "client_id=$clientId" +
-               "&redirect_uri=$redirectUri" +
+               "client_id=$ClientId" +
+               "&redirect_uri=$RedirectUri" +
                "&scope=playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative user-library-read user-library-modify user-modify-playback-state user-read-playback-state user-top-read user-read-email user-read-private user-read-birthdate user-follow-read user-follow-modify user-read-recently-played" +
                "&response_type=token"
 
@@ -34,7 +30,7 @@ function Get-SpotifyAuthorizationToken {
     $InitialFormWindowState = New-Object 'System.Windows.Forms.FormWindowState'
 
     $Form_Load = {	
-    	$TotalTime = $pageLoadTime
+    	$TotalTime = $PageLoadTime
     	$script:StartTime = (Get-Date).AddSeconds($TotalTime)
     	$Timer.Start()
     }

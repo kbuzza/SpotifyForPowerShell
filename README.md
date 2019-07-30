@@ -6,6 +6,11 @@ A PowerShell module for interacting directly with the Spotify API!
 
 This module works as a wrapper for the Spotify Web API. It contains a PowerShell function corresponding to each listed Spotify API commands. To set up the module, all you need to do is enter your Client Id and Callback into Get-SpotifyAuthorizationToken.ps1 (for help creating a Spotify application, see https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app). Lastly, adjust your page load time in Get-SpotifyAuthorizationToken (this is most easily done through personal testing and 5 seconds is recommended).
 
+**Installation Instructions:**
+1. Run the following command in a Git shell or on the PowerShell command line: `git clone https://github.com/kbuzza/SpotifyForPowerShell.git`
+2. Add your personal ClientId, RedirectUri, and PageLoadTime to SpotifyForPowerShell.psm1
+3. Import the module using: `Import-Module .\SpotifyForPowerShell\SpotifyForPowerShell.psd1`
+
 **Current function implementations:**
 
 Authorization:
@@ -97,6 +102,7 @@ Playlist Sentence Creator:
 - `Get-SpotifySentenceAlphabetMatch`
 
 **Change Log:**
+- v1.1 Added API folders and implemented manifest module
 - v1.0 Initial Release (Current)
 - v0.11 Completed initial Player API
 - v0.10 Completed intial Browse/Follow APIs
