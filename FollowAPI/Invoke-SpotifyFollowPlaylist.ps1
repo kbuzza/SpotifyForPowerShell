@@ -1,7 +1,7 @@
 function Invoke-SpotifyFollowPlaylist {
     <#
         .SYNOPSIS
-            This function will add the current user as the follower
+            This function will add the current user as a follower of a playlist.
 
         .EXAMPLE
             C:\Users\kbuzz> Invoke-SpotifyFollowPlaylist -PlaylistId "5mFbFhHahoLBsF7FUFTb4l" -Public $true 
@@ -10,7 +10,7 @@ function Invoke-SpotifyFollowPlaylist {
             Required. The Spotify ID of the playlist.
 
         .PARAMETER Public
-            Optional. Default true. Boolean to determine whether the playlist is public or private.
+            Optional. Default true. Boolean to determine whether the playlist will dsplay as public or private on the user's profile.
 
         .PARAMETER Auth
             Optional. A continuation authorization token.
