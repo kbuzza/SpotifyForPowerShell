@@ -4,12 +4,12 @@ A PowerShell module for interacting directly with the Spotify API!
 
 **How it works:**
 
-This module works as a wrapper for the Spotify Web API. It contains a PowerShell function corresponding to each listed Spotify API commands. To set up the module, all you need to do is enter your Client Id and Callback into Get-SpotifyAuthorizationToken.ps1 (for help creating a Spotify application, see https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app). Lastly, adjust your page load time in Get-SpotifyAuthorizationToken (this is most easily done through personal testing and 5 seconds is recommended).
+This module works as a wrapper for the Spotify Web API. It contains a PowerShell function corresponding to each listed Spotify API commands. To set up the module, all you need to do is enter your Client Id and Callback into Get-SpotifyAuthorizationToken.ps1 (for help creating a Spotify application, see https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app). Lastly, adjust your page load time in Get-SpotifyAuthorizationToken (this is most easily done through personal testing; I use 5 seconds).
 
 **Installation Instructions:**
 1. Run the following command in a Git shell or on the PowerShell command line: `git clone https://github.com/kbuzza/SpotifyForPowerShell.git`
 2. Add your personal ClientId, RedirectUri, and PageLoadTime to SpotifyForPowerShell.psm1
-3. Import the module using: `Import-Module .\SpotifyForPowerShell\SpotifyForPowerShell.psd1`
+3. Import the module using: `Import-Module .\SpotifyForPowerShell.psd1`
 
 **Current function implementations:**
 
@@ -101,8 +101,12 @@ Playlist Sentence Creator:
 - `Get-SpotifySentenceTrackMatch`
 - `Get-SpotifySentenceAlphabetMatch`
 
+Musical Chairs:
+- `Invoke-SpotifyMusicalChairs`
+
 **Change Log:**
-- v1.1a Updated folder hierarchy (Current)
+- v1.2 Added sample project - Musical Chairs (Current)
+- v1.1a Updated folder hierarchy
 - v1.1 Added API folders and implemented manifest module
 - v1.0 Initial Release
 - v0.11 Completed initial Player API

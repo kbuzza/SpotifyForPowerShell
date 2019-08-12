@@ -14,6 +14,12 @@ function Save-SpotifySentencePlaylist {
             
             Note: Spotify does not currently provide a way to search for special characters, so avoid using special characters
             and contractions for best results.
+
+        .Parameter ByLetter
+            Optional. Switch parameter. If used, playlist will insert words by letter instead of full words.
+        
+        .PARAMETER Auth
+            Optional. A continuation authorization token.
     #>
 
     param (
@@ -21,14 +27,29 @@ function Save-SpotifySentencePlaylist {
         [string] $Sentence,
 
         [Parameter(Mandatory = $false)]
-        [switch] $ByLetter = $false
+        [switch] $ByLetter = $false,
+
+        [Parameter(Mandatory = $false)]
+        [switch] $Private,
+
+        [Parameter(Mandatory = $false)]
+        [string] $Auth
     )
 
     $words = $Sentence.Split()
 
-    $AuthToken = Get-SpotifyAuthorizationToken
+    if ($Auth) {
+        $AuthToken = $Auth
+    } else {
+        $AuthToken = Get-SpotifyAuthorizationToken
+    }
 
-    $playlistId = Save-SpotifyPlaylistsPlaylist -Id "yaboybuzza" -Name $Sentence -Auth $AuthToken
+    if ($Private) {
+        $playlistId = Save-SpotifyPlaylistsPlaylist -Id (Get-SpotifyUserProfileInfo -Auth $a).id -Name $Sentence -Auth $AuthToken -Public $false
+    } else {
+        $playlistId = Save-SpotifyPlaylistsPlaylist -Id (Get-SpotifyUserProfileInfo -Auth $a).id -Name $Sentence -Auth $AuthToken -Public $true
+    }
+    
     $playlistId = $playlistId.id
 
     if ($ByLetter) {

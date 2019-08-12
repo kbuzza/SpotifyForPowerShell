@@ -69,7 +69,10 @@ function Set-SpotifyPlayerPlay {
         $body += """offset"":{""position"":$Offset},"
     }
 
-    $body = $body.Substring(0, $body.Length - 1)
+    if ($body.Length -gt 1) {
+        $body = $body.Substring(0, $body.Length - 1)
+    }
+
     $body += "}"
 
     Invoke-RestMethod -Uri $uri -Method Put -Headers @{Authorization="Bearer $AuthToken"} -Body $body
